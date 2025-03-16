@@ -47,11 +47,11 @@ pipeline {
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service charts --values=values.yml --namespace dev
+                    helm upgrade --install movie-service charts --values=values.yml --set service.nodePort=30007 --namespace dev
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service charts --values=values.yml --namespace dev
+                    helm upgrade --install cast-service charts --values=values.yml --set service.nodePort=30008 --namespace dev
                     '''
                 }
             }
@@ -70,11 +70,11 @@ pipeline {
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service charts --values=values.yml --namespace qa
+                    helm upgrade --install movie-service charts --values=values.yml --set service.nodePort=30007 --namespace qa
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service charts --values=values.yml --namespace qa
+                    helm upgrade --install cast-service charts --values=values.yml --set service.nodePort=30008 --namespace qa
                     '''
                 }
             }
@@ -93,11 +93,11 @@ pipeline {
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service charts --values=values.yml --namespace staging
+                    helm upgrade --install movie-service charts --values=values.yml --set service.nodePort=30007 --namespace staging
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service charts --values=values.yml --namespace staging
+                    helm upgrade --install cast-service charts --values=values.yml --set service.nodePort=30008 --namespace staging
                     '''
                 }
             }
@@ -122,11 +122,11 @@ pipeline {
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service charts --values=values.yml --namespace prod
+                    helm upgrade --install movie-service charts --values=values.yml --set service.nodePort=30007 --namespace prod
                     cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service charts --values=values.yml --namespace prod
+                    helm upgrade --install cast-service charts --values=values.yml --set service.nodePort=30008 --namespace prod
                     '''
                 }
             }
