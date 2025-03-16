@@ -44,14 +44,14 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    cp fastapiapp/values.yaml values.yml
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service fastapiapp --values=values.yml --namespace dev
-                    cp fastapiapp/values.yaml values.yml
+                    helm upgrade --install movie-service charts --values=values.yml --namespace dev
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service fastapiapp --values=values.yml --namespace dev
+                    helm upgrade --install cast-service charts --values=values.yml --namespace dev
                     '''
                 }
             }
@@ -67,14 +67,14 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    cp fastapiapp/values.yaml values.yml
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service fastapiapp --values=values.yml --namespace qa
-                    cp fastapiapp/values.yaml values.yml
+                    helm upgrade --install movie-service charts --values=values.yml --namespace qa
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service fastapiapp --values=values.yml --namespace qa
+                    helm upgrade --install cast-service charts --values=values.yml --namespace qa
                     '''
                 }
             }
@@ -90,14 +90,14 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    cp fastapiapp/values.yaml values.yml
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service fastapiapp --values=values.yml --namespace staging
-                    cp fastapiapp/values.yaml values.yml
+                    helm upgrade --install movie-service charts --values=values.yml --namespace staging
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service fastapiapp --values=values.yml --namespace staging
+                    helm upgrade --install cast-service charts --values=values.yml --namespace staging
                     '''
                 }
             }
@@ -119,14 +119,14 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    cp fastapiapp/values.yaml values.yml
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_MOVIE_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install movie-service fastapiapp --values=values.yml --namespace prod
-                    cp fastapiapp/values.yaml values.yml
+                    helm upgrade --install movie-service charts --values=values.yml --namespace prod
+                    cp charts/values.yaml values.yml
                     sed -i "s+repository: sajjadhz/fastapiapp+repository: $DOCKER_ID/$DOCKER_CAST_IMAGE+g" values.yml
                     sed -i "s+tag: \\"latest\\"+tag: $DOCKER_TAG+g" values.yml
-                    helm upgrade --install cast-service fastapiapp --values=values.yml --namespace prod
+                    helm upgrade --install cast-service charts --values=values.yml --namespace prod
                     '''
                 }
             }
