@@ -105,8 +105,9 @@ pipeline {
         stage('Deploy to Prod') {
             when {
                 expression {
-                    // Vérifie si le commit est sur la branche master
-                    sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == "master"
+                    def branch = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                    echo "Detected branch: ${branch}"
+                    return branch == "master"
                 }
             }
             environment {
