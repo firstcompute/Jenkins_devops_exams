@@ -105,10 +105,10 @@ pipeline {
         stage('Deploy to Prod') {
             when {
                 expression {
-                    def branch = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                    echo "Detected branch: ${branch}"
-                    return branch == "master"
-                }
+            		def ref = env.GIT_BRANCH ?: "refs/remotes/origin/master"
+            		echo "Detected ref: ${ref}"
+            		return ref.contains("master")
+        	}
             }
             environment {
                 KUBECONFIG = credentials("config")
